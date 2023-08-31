@@ -2,6 +2,9 @@
 @section('student')
 
 <h1>Sekolah</h1>
+<a href="{{ route('sekolahs.create') }}">
+  <input type="submit" value="Tambah Baru" class="btn btn-primary">
+</a>
 
 <div class="card">
     <div class="table-responsive">
@@ -24,7 +27,8 @@
             <td>{{ $sekolah -> jurusan }}</td>
             <td>{{ $sekolah -> jumlah_guru }}</td>
             <td>
-                <a href="#">Edit</a>
+                <a href="{{ route('sekolahs.edit', $sekolah->id) }}">Edit</a>
+                <a href="" class="btn btn-danger">Hapus</a>
             </td>
           </tr>
           @endforeach
@@ -32,4 +36,5 @@
       </table>
     </div>
   </div>
+
 @endsection

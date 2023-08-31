@@ -32,9 +32,11 @@ Route::get('/dashboard', function () {
 //     ]);
 // });
 
-Route::get('/sekolahs', [SekolahController::class, 'index']);
-Route::get('/sekolahs/create', [SekolahController::class, 'create']);
-Route::post('/sekolahs', [SekolahController::class, 'store']);
+Route::get('/siswa', [SekolahController::class, 'index'])->name('sekolahs.index');
+Route::get('/siswa/create', [SekolahController::class, 'create'])->name('sekolahs.create');
+Route::post('/siswa', [SekolahController::class, 'store'])->name('sekolahs.store');
+Route::get('/siswa/{id}/edit', [SekolahController::class, 'edit'])->name('sekolahs.edit');
+Route::put('/siswa/{id}', [SekolahController::class, 'update'])->name('sekolahs.update');
 
 
 Route::prefix('author')->name('author.')->group(function(){

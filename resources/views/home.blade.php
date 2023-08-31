@@ -43,10 +43,10 @@
               <div class="col">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                  Overview
+                  {{ $preTitle ?? "Data" }}
                 </div>
                 <h2 class="page-title">
-                  Vertical layout
+                  {{ $title ?? 'Sekolah App' }}
                 </h2>
               </div>
               <!-- Page title actions -->

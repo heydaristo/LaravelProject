@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2023 at 09:41 AM
+-- Generation Time: Aug 31, 2023 at 10:25 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -99,7 +99,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `sekolahs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `nama_sekolah` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_sekolah` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `jurusan` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `jumlah_guru` int(11) NOT NULL,
@@ -112,8 +112,11 @@ CREATE TABLE `sekolahs` (
 --
 
 INSERT INTO `sekolahs` (`id`, `nama_sekolah`, `alamat`, `jurusan`, `jumlah_guru`, `created_at`, `updated_at`) VALUES
-(2, 'SMKN 1 SAYUNG', 'Jl Raya Semarang Demak Km 14 Onggorawe Sayung Demak, Daleman, Tugu, Kec. Sayung, Kabupaten Demak, Jawa Tengah 59563', 'PPLG', 45, NULL, NULL),
-(3, 'SMKN 1 DEMAK', 'Jl. Sultan Trenggono No.87, Katonsari, Kec. Demak, Kabupaten Demak, Jawa Tengah 59516', 'Otomotif', 50, NULL, NULL);
+(2, 'SMKN 1 SAYUNG DEMAK', 'Jl Raya Semarang Demak Km 14 Onggorawe Sayung Demak, Daleman, Tugu, Kec. Sayung, Kabupaten Demak, Jawa Tengah 59563', 'PPLG', 45, NULL, '2023-08-31 00:44:33'),
+(3, 'SMKN 1 DEMAK', 'Jl. Sultan Trenggono No.87, Katonsari, Kec. Demak, Kabupaten Demak, Jawa Tengah 59516', 'Otomotif', 50, NULL, NULL),
+(4, 'SMPN 34 Semarang', 'Jl. Tlogomulyo, Tlogomulyo, Kec. Pedurungan, Kota Semarang, Jawa Tengah 50113', 'TO', 50, '2023-08-30 19:29:37', '2023-08-30 19:29:37'),
+(6, 'SMK Negeri 1 Semarang', 'Jalan Dokter Cipto No.93, Sarirejo, Kec. Semarang Tim., Kota Semarang, Jawa Tengah 50124', 'TKR', 80, '2023-08-30 19:31:21', '2023-08-30 19:31:21'),
+(7, 'SMK Negeri 2 Semarang', 'Jalan Dokter Cipto No.121A, Karangturi, Kec. Semarang Tim., Kota Semarang, Jawa Tengah 50124', 'TO', 40, '2023-08-30 19:34:15', '2023-08-30 19:34:15');
 
 -- --------------------------------------------------------
 
@@ -209,7 +212,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `sekolahs`
 --
 ALTER TABLE `sekolahs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
