@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\sekolah;
+use App\Http\Controllers\SekolahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,13 +26,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 });
 
-Route::get('/sekolahs', function () {
-    return view('sekolahs.index', [
-        'sekolahs' => sekolah::get()
-    ]);
-});
+// Route::get('/sekolahs', function () {
+//     return view('sekolahs.index', [
+//         'sekolahs' => sekolah::get()
+//     ]);
+// });
 
-// Route::get('/sekolahs', [SekolahController]::class, 'index');
+Route::get('/sekolahs', [SekolahController::class, 'index']);
+Route::get('/sekolahs/create', [SekolahController::class, 'create']);
+Route::post('/sekolahs', [SekolahController::class, 'store']);
 
 
 Route::prefix('author')->name('author.')->group(function(){
