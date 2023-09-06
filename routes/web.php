@@ -37,7 +37,7 @@ Route::get('/siswa/create', [SekolahController::class, 'create'])->name('sekolah
 Route::post('/siswa', [SekolahController::class, 'store'])->name('sekolahs.store');
 Route::get('/siswa/{id}/edit', [SekolahController::class, 'edit'])->name('sekolahs.edit');
 Route::put('/siswa/{id}', [SekolahController::class, 'update'])->name('sekolahs.update');
-
+Route::delete('/siswa/{id}', [SekolahController::class, 'destroy'])->name('sekolahs.destroy');
 
 Route::prefix('author')->name('author.')->group(function(){
     Route::middleware(['guest:web'])->group(function(){

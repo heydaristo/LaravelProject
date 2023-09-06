@@ -40,6 +40,8 @@ class SekolahController extends Controller
         $sekolah->save();
 
         return redirect()->route('sekolahs.index');
+
+        
     }   
     public function edit($id) {
         $sekolahs = sekolah::find($id);
@@ -72,5 +74,19 @@ class SekolahController extends Controller
 
         return redirect()->route('sekolahs.index');
         
+        session()->flash('info', 'Data berhasil diperbarui.');
+
+    }
+
+    function destroy($id) {
+        $sekolah = sekolah::find($id);
+
+        $sekolah->delete();
+        return redirect()->route('sekolahs.index');
+
+        session()->flash('danger', 'Data berhasil dihapus.');
+       
+
+
     }
 }

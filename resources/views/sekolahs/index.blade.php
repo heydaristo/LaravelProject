@@ -6,7 +6,7 @@
   <input type="submit" value="Tambah Baru" class="btn btn-primary">
 </a>
 
-<div class="card">
+<div class="card mt-3">
     <div class="table-responsive">
       <table class="table table-vcenter card-table">
         <thead>
@@ -28,7 +28,11 @@
             <td>{{ $sekolah -> jumlah_guru }}</td>
             <td>
                 <a href="{{ route('sekolahs.edit', $sekolah->id) }}">Edit</a>
-                <a href="" class="btn btn-danger">Hapus</a>
+                <form action="{{ route('sekolahs.destroy', $sekolah->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
+                </form>
             </td>
           </tr>
           @endforeach
