@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 //     ]);
 // });
 
+Route::get('/siswa/view', [SekolahController::class, 'view'])->name('sekolahs.view');
 Route::get('/siswa', [SekolahController::class, 'index'])->name('sekolahs.index');
 Route::get('/siswa/create', [SekolahController::class, 'create'])->name('sekolahs.create');
 Route::post('/siswa', [SekolahController::class, 'store'])->name('sekolahs.store');

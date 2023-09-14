@@ -7,14 +7,17 @@ use App\Models\sekolah;
 
 class SekolahController extends Controller
 {
-    public function index()
+    public function view()
     {
-        return view('sekolahs.index', [
+        return view('sekolahs.view', [
         'sekolahs' => sekolah::get()
         ]);
     }
     public function create() {
         return view('sekolahs.create');
+    }
+    public function index() {
+        return view('sekolahs.index');
     }
     public function store(Request $request) {
 
