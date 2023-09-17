@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\SekolahController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -56,4 +58,22 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+});
+// Rute Admin
+Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
+    Route::get('/dashboard-admin',[AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/view', [AdminController::class, 'view'])->name('admin.view');
+    Route::post('/admin/view', [AdminController::class, 'search'])->name('admin.search');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+    Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+    Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/admin/{id}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/siswa/{id}', [SekolahController::class, 'destroy'])->name('admin.destroy');
+
+});
+
+// Rute Siswa
+Route::middleware(['auth', 'verified'])->group(function () {
+Route::get('/dashboard-user', [SekolahController::class, 'view'])->name('user.view');
 });

@@ -5,7 +5,7 @@
       </button>
       <h1 class="navbar-brand navbar-brand-autodark">
         <a href=".">
-          <img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+          <img src="http://smkn1sayung.sch.id/wp-content/uploads/2020/03/logo1.png" width="50" height="50"  class="navbar-image">
         </a>
       </h1>
       <div class="navbar-nav flex-row d-lg-none">
@@ -134,7 +134,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('sekolahs.index') }}" >
+            <a class="nav-link" href="{{ route('admin.index') }}" >
               <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 11l3 3l8 -8" /><path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" /></svg>
               </span>
@@ -142,7 +142,28 @@
                 Siswa
               </span>
             </a>
+          </li>
+          <li class="nav-item">
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
 
+            <button type="submit" class="nav-link" >
+            
+              <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-door-exit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                  <path d="M13 12v.01"></path>
+                  <path d="M3 21h18"></path>
+                  <path d="M5 21v-16a2 2 0 0 1 2 -2h7.5m2.5 10.5v7.5"></path>
+                  <path d="M14 7h7m-3 -3l3 3l-3 3"></path>
+               </svg>
+              </span>
+              <span class="nav-link-title">
+                {{ __('Log Out') }}
+              </span>
+            </button>
+            </form>
+          </li>
         </ul>
       </div>
     </div>

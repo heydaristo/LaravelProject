@@ -1,10 +1,19 @@
 @extends('home')
 @section('student')
 
+@php
+  $title= "Edit Data Sekolah";
+  $preTitle= "Admin Page";
+@endphp
+
+@push('page-action')
+    <a href="{{ route('admin.view') }}" class="btn btn-primary">Kembali</a>
+@endpush
+
 
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('sekolahs.update', $sekolahs->id) }}" method="post">
+        <form action="{{ route('admin.update', $sekolahs->id) }}" method="post">
             @csrf
             @method('PUT')
         <div class="mb-3">

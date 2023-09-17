@@ -11,9 +11,18 @@
 </div>
 @endif
 
+@php
+  $title= "Masukan data sekolah";
+  $preTitle= "Admin Page";
+@endphp
+
+@push('page-action')
+    <a href="{{ route('admin.index') }}" class="btn btn-primary">Kembali</a>
+@endpush
+
 <div class="card">
     <div class="card-body">
-        <form action="{{ route('sekolahs.store') }}" method="post">
+        <form action="{{ route('admin.store') }}" method="post">
             @csrf
         <div class="mb-3">
             <label class="form-label">Nama Sekolah</label>

@@ -7,89 +7,44 @@ use App\Models\sekolah;
 
 class SekolahController extends Controller
 {
-    public function view()
+    public function view(Request $request)
     {
-        return view('sekolahs.view', [
-        'sekolahs' => sekolah::get()
-        ]);
+        $query = sekolah::query();
+        // $sekolahs = sekolah::latest()->sortable()->paginate(3)->onEachSide(2)->fragment('sekolahs');
+
+        if(request('search')) {
+            $sekolahs = Sekolah::where('nama_sekolah', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('alamat', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('jurusan', 'LIKE', '%' . request('search') . '%')
+            ->orWhere('jumlah_guru', 'LIKE', '%' . request('search') . '%');
+        } else if ($request->has('sort')) {
+            $sortField = $request->input('sort');
+            $sortDirection = $request->input('direction', 'asc');
+            $query->orderBy($sortField, $sortDirection);
+        }
+        $sekolahs = $query->paginate(5)->oneachSide(2)->fragment('sekolah');
+
+        return view('user.index', ['sekolahs' => $sekolahs]);
+
+        // return view('user.index', [
+        // 'sekolahs' => Sekolah::get()
+        // ]);
     }
     public function create() {
-        return view('sekolahs.create');
+        return view('user.create');
     }
     public function index() {
-        return view('sekolahs.index');
+        return view('user.index');
     }
-    public function store(Request $request) {
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
 
-        $request->validate([
-            'nama_sekolah' => 'required',
-            'alamat' => 'required',
-            'jurusan' => 'required',
-            'jumlah_guru' => 'required|numeric',
-        ], [
-            'nama_sekolah.required' => 'Nama sekolah wajib diisi.',
-            'alamat.required' => 'Alamat wajib diisi.',
-            'jurusan.required' => 'Jurusan wajib diisi.',
-            'jumlah_guru.required' => 'Jumlah guru wajib diisi.',
-            'jumlah_guru.numeric' => 'Jumlah guru harus berupa angka.'
-        ]);
-        $sekolah = new Sekolah();
+        $request->session()->invalidate();
 
-        $sekolah->nama_sekolah = $request->nama_sekolah;
-        $sekolah->alamat = $request->alamat;
-        $sekolah->jurusan = $request->jurusan;
-        $sekolah->jumlah_guru = $request->jumlah_guru;
+        $request->session()->regenerateToken();
 
-        $sekolah->save();
-
-        return redirect()->route('sekolahs.index');
-
-        
-    }   
-    public function edit($id) {
-        $sekolahs = sekolah::find($id);
-
-        return view('sekolahs.edit', [
-            'sekolahs' => $sekolahs, 
-        ]);
-    }
-    public function update(Request $request, $id ) {
-        $request->validate([
-            'nama_sekolah' => 'required',
-            'alamat' => 'required',
-            'jurusan' => 'required',
-            'jumlah_guru' => 'required|numeric',
-        ], [
-            'nama_sekolah.required' => 'Nama sekolah wajib diisi.',
-            'alamat.required' => 'Alamat wajib diisi.',
-            'jurusan.required' => 'Jurusan wajib diisi.',
-            'jumlah_guru.required' => 'Jumlah guru wajib diisi.',
-            'jumlah_guru.numeric' => 'Jumlah guru harus berupa angka.'
-        ]);
-        $sekolah = sekolah::find($id);  
-
-        $sekolah->nama_sekolah = $request->nama_sekolah;
-        $sekolah->alamat = $request->alamat;
-        $sekolah->jurusan = $request->jurusan;
-        $sekolah->jumlah_guru = $request->jumlah_guru;
-
-        $sekolah->save();
-
-        return redirect()->route('sekolahs.index');
-        
-        session()->flash('info', 'Data berhasil diperbarui.');
-
-    }
-
-    function destroy($id) {
-        $sekolah = sekolah::find($id);
-
-        $sekolah->delete();
-        return redirect()->route('sekolahs.index');
-
-        session()->flash('danger', 'Data berhasil dihapus.');
-       
-
+        return redirect()->route('/');
 
     }
 }
