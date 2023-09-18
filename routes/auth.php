@@ -69,7 +69,7 @@ Route::middleware(['auth', 'checkUserRole:admin'])->group(function () {
     Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
     Route::get('/admin/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
     Route::put('/admin/{id}', [AdminController::class, 'update'])->name('admin.update');
-    Route::delete('/siswa/{id}', [SekolahController::class, 'destroy'])->name('admin.destroy');
+    Route::delete('/siswa/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
 });
 

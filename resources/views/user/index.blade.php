@@ -10,11 +10,11 @@
 <h1 class="text-center">User</h1>
 <p class="text-center">Selamat Datang {{ Auth::user()->name }}, anda login sebagai {{ Auth::user()->role }}</p>
 
-<form action="{{ route('admin.view') }}">
+<form method="GET">
   <div class="input-group mt-3">
-    <input type="text" class="form-control" placeholder="Cari..." name="search">
+    <input type="text" class="form-control" placeholder="Cari..." name="search" autofocus="true">
     <div class="input-group-prepend ms-2">
-      <button class="btn btn-primary" type="submit">Search</button> <!-- Ganti dengan ikon yang sesuai -->
+      <button class="btn btn-primary" type="submit">Search</button>
       </button>
     </div>
   </div>
@@ -24,6 +24,7 @@
       <table class="table table-vcenter card-table">
         <thead>
           <tr>
+            <th>No</th>
             <th>Nama Sekolah</th>
             <th>Alamat</th>
             <th>Jurusan</th>
@@ -33,8 +34,12 @@
         </thead>
         <tbody>
           <tr>
-            @foreach ($sekolahs as $sekolah)
-            
+            @php
+            $i = 1 + (($sekolahs->currentPage()-1) * $sekolahs->perPage());
+          @endphp
+          @foreach ($sekolahs as $sekolah )
+          {{-- <th>{{ $sekolahs->firstItem() + $key }}</th> --}}
+          <th>{{ $i++ }}</th>
             <td>{{ $sekolah -> nama_sekolah }}</td>
             <td>{{ $sekolah -> alamat }}</td>
             <td>{{ $sekolah -> jurusan }}</td>

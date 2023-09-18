@@ -9,26 +9,23 @@ class SekolahController extends Controller
 {
     public function view(Request $request)
     {
-        $query = sekolah::query();
-        // $sekolahs = sekolah::latest()->sortable()->paginate(3)->onEachSide(2)->fragment('sekolahs');
+        $search = $request->query('search');
 
-        if(request('search')) {
-            $sekolahs = Sekolah::where('nama_sekolah', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('alamat', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('jurusan', 'LIKE', '%' . request('search') . '%')
-            ->orWhere('jumlah_guru', 'LIKE', '%' . request('search') . '%');
-        } else if ($request->has('sort')) {
-            $sortField = $request->input('sort');
-            $sortDirection = $request->input('direction', 'asc');
-            $query->orderBy($sortField, $sortDirection);
+        if(empty($cari)) {
+            $Sekolah = sekolah::sortable()
+            ->where('sekolahs.nama_sekolah', 'LIKE', '%' . $search . '%')
+            ->orWhere('sekolahs.alamat', 'LIKE', '%' . $search . '%')
+            ->orWhere('sekolahs.jurusan', 'LIKE', '%' . $search . '%')
+            ->orWhere('sekolahs.jumlah_guru', 'LIKE', '%' . $search . '%')
+            ->paginate(5)->oneachSide(2)->fragment('sekolah');
+        } else {
+            $Sekolah = sekolah::sortable()->paginate(5)->oneachSide(2)->fragment('sekolah');
         }
-        $sekolahs = $query->paginate(5)->oneachSide(2)->fragment('sekolah');
 
-        return view('user.index', ['sekolahs' => $sekolahs]);
-
-        // return view('user.index', [
-        // 'sekolahs' => Sekolah::get()
-        // ]);
+        return view('user.index',)->with([
+            'sekolahs' => $Sekolah,
+            'search' => $search,
+        ]);
     }
     public function create() {
         return view('user.create');

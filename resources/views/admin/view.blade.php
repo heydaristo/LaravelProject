@@ -19,11 +19,11 @@
 
 <h1 class="text-center">Sekolah</h1>
 
-<form action="{{ route('admin.view') }}">
+<form method="GET">
   <div class="input-group mt-3">
-    <input type="text" class="form-control" placeholder="Cari..." name="search">
+    <input type="text" class="form-control" placeholder="Cari..." name="search" autofocus="true">
     <div class="input-group-prepend ms-2">
-      <button class="btn btn-primary" type="submit">Search</button> <!-- Ganti dengan ikon yang sesuai -->
+      <button class="btn btn-primary" type="submit">Search</button>
       </button>
     </div>
   </div>
@@ -36,8 +36,6 @@
         <thead>
           <tr>
             <th>No</th>
-            {{-- <th>Nama Sekolah</th> --}}
-            {{-- <td>{{ $sekolahs->firstItem() + $sekolahs }}</td> --}}
             <th>@sortablelink('nama_sekolah', 'Nama Sekolah')</th>
             <th>@sortablelink('alamat', 'Alamat')</th>
             <th>@sortablelink('jurusan', 'Jurusan')</th>
@@ -47,12 +45,12 @@
         </thead>
         <tbody>
           <tr>
-            @foreach ($sekolahs as $sekolah )
             @php
               $i = 1 + (($sekolahs->currentPage()-1) * $sekolahs->perPage());
             @endphp
+            @foreach ($sekolahs as $sekolah )
             {{-- <th>{{ $sekolahs->firstItem() + $key }}</th> --}}
-            <th>{{ $loop->iteration }}</th>
+            <th>{{ $i++ }}</th>
             <td>{{ $sekolah -> nama_sekolah }}</td>
             <td>{{ $sekolah -> alamat }}</td>
             <td>{{ $sekolah -> jurusan }}</td>
@@ -70,8 +68,6 @@
         </tbody>
       </table>
       <div class="d-flex justify-content-end mt-2">
-        {{-- {{ $sekolahs->links('pagination::bootstrap-5') }} --}}
-        {{-- {{ $sekolahs->appends(['query' => $query])->links('pagination::bootstrap-5') }} --}}
         {!! $sekolahs->appends(Request::except('page'))->links('pagination::bootstrap-5') !!}
     </div>
     </div>

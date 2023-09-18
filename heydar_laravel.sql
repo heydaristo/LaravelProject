@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2023 at 10:25 AM
+-- Generation Time: Sep 18, 2023 at 05:33 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -112,11 +112,18 @@ CREATE TABLE `sekolahs` (
 --
 
 INSERT INTO `sekolahs` (`id`, `nama_sekolah`, `alamat`, `jurusan`, `jumlah_guru`, `created_at`, `updated_at`) VALUES
-(2, 'SMKN 1 SAYUNG DEMAK', 'Jl Raya Semarang Demak Km 14 Onggorawe Sayung Demak, Daleman, Tugu, Kec. Sayung, Kabupaten Demak, Jawa Tengah 59563', 'PPLG', 45, NULL, '2023-08-31 00:44:33'),
 (3, 'SMKN 1 DEMAK', 'Jl. Sultan Trenggono No.87, Katonsari, Kec. Demak, Kabupaten Demak, Jawa Tengah 59516', 'Otomotif', 50, NULL, NULL),
 (4, 'SMPN 34 Semarang', 'Jl. Tlogomulyo, Tlogomulyo, Kec. Pedurungan, Kota Semarang, Jawa Tengah 50113', 'TO', 50, '2023-08-30 19:29:37', '2023-08-30 19:29:37'),
 (6, 'SMK Negeri 1 Semarang', 'Jalan Dokter Cipto No.93, Sarirejo, Kec. Semarang Tim., Kota Semarang, Jawa Tengah 50124', 'TKR', 80, '2023-08-30 19:31:21', '2023-08-30 19:31:21'),
-(7, 'SMK Negeri 2 Semarang', 'Jalan Dokter Cipto No.121A, Karangturi, Kec. Semarang Tim., Kota Semarang, Jawa Tengah 50124', 'TO', 40, '2023-08-30 19:34:15', '2023-08-30 19:34:15');
+(7, 'SMK Negeri 2 Semarang', 'Jalan Dokter Cipto No.121A, Karangturi, Kec. Semarang Tim., Kota Semarang, Jawa Tengah 50124', 'TO', 40, '2023-08-30 19:34:15', '2023-08-30 19:34:15'),
+(14, 'SMK Negeri 3 Semarang', 'Jl. Admodirono Raya No. 7A Kecamatan Semarang Selatan', 'TO', 90, '2023-09-17 18:33:05', '2023-09-17 18:33:05'),
+(15, 'SMK Negeri 4 Semarang', 'Jl. Pandanaran II/7 Kecamatan Semarang Selatan', 'TSM', 80, '2023-09-17 18:33:36', '2023-09-17 18:33:36'),
+(16, 'SMK Negeri 5 Semarang', 'Jl. Dr. Cipto No. 121 Kecamatan Semarang Timur', 'Kuliner', 60, '2023-09-17 18:34:01', '2023-09-17 18:34:01'),
+(17, 'SMK Negeri 6 Semarang', 'Jl. Sidodadi Barat No. 8 Kecamatan Semarang Timur', 'Perhotelan', 70, '2023-09-17 18:34:29', '2023-09-17 18:34:29'),
+(18, 'SMK Negeri 7 Semarang', 'Jl. Simpanglima Kecamatan Semarang Selatan', 'PMBG', 100, '2023-09-17 18:35:01', '2023-09-17 18:35:01'),
+(19, 'SMK Negeri 8 Semarang', 'Jl. Pandanaran II/12 Kecamatan Semarang Selatan', 'PPLG', 40, '2023-09-17 18:35:23', '2023-09-17 18:35:23'),
+(20, 'SMK Negeri 9 Semarang', 'Jl. Peterongansari No. 2 Kecamatan Semarang Selatan', 'TKJ', 85, '2023-09-17 18:35:53', '2023-09-17 18:35:53'),
+(21, 'SMKN 1 SAYUNG', 'Jl Raya Semarang Demak Km 14 Onggorawe Sayung Demak, Daleman, Tugu, Kec. Sayung, Kabupaten Demak, Jawa Tengah 59563', 'PPLG', 45, '2023-09-17 20:27:03', '2023-09-17 20:27:03');
 
 -- --------------------------------------------------------
 
@@ -131,6 +138,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -139,8 +147,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'heydaristo', 'heydaristo@gmail.com', NULL, '$2y$10$0LkcsayrqptxBl48M7phGOAYdccENcU6zDBXpGwExlpkwBmoNWUqW', NULL, '2023-08-02 19:00:47', '2023-08-02 19:00:47');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'heydaristo', 'heydaristo@gmail.com', NULL, '$2y$10$0LkcsayrqptxBl48M7phGOAYdccENcU6zDBXpGwExlpkwBmoNWUqW', NULL, 'admin', '2023-08-02 19:00:47', '2023-08-02 19:00:47'),
+(2, 'heydarsiswa', 'heydarsiswa@gmail.com', NULL, '$2y$10$0LkcsayrqptxBl48M7phGOAYdccENcU6zDBXpGwExlpkwBmoNWUqW', '', 'user', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -212,13 +221,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `sekolahs`
 --
 ALTER TABLE `sekolahs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
